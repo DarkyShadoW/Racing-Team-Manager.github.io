@@ -418,15 +418,26 @@ function tpRefresh() {
   }));
 }
 function tpSet(k, v) {
+  const prevTop = TP.top, prevFo = TP.fo, prevFh = TP.fh;
   if (k === "top") { const o = TP_TOPS.find(x => x.k === v); if (!o) return; if (TP.top !== v) TP.topCol = 0; TP.top = v; }
   else if (k === "fo") { const j = +v; if (!FEM_OUTS[j]) return; if ((TP.fo | 0) !== j) { TP.ftc = 0; TP.fpa = FEM_OUTS[j].pants; } TP.fo = j; }
   else if (k === "fh") { TP.fh = +v; if (TP.fhc === FEM_H.nat[TP.fh]) TP.fhc = -1; }
   else if (["skin", "hairCol", "eyeCol", "topCol", "pants", "fhc", "ftc", "fpa"].includes(k)) TP[k] = +v;
   else TP[k] = v;
   tpSave();
-  const keep = document.activeElement?.dataset?.tpset === k ? `[data-tpset="${k}"][data-v="${v}"]` : null;
-  tpBody(); tpRefresh();
-  if (keep) document.querySelector(keep)?.focus({ preventScroll: true });
+  const rebuild = k === "face" || (k === "top" && TP.top !== prevTop) || (k === "fo" && TP.fo !== prevFo) || (k === "fh" && TP.fh !== prevFh);
+  if (rebuild) {
+    const keep = document.activeElement?.dataset?.tpset === k ? `[data-tpset="${k}"][data-v="${v}"]` : null;
+    tpBody();
+    if (keep) document.querySelector(keep)?.focus({ preventScroll: true });
+  } else {
+    document.querySelectorAll(`#tpBody [data-tpset="${k}"]`).forEach(b => {
+      const attr = b.getAttribute("role") === "radio" ? "aria-checked" : "aria-pressed";
+      b.setAttribute(attr, String(b.dataset.v === String(TP[k])));
+    });
+    if (["skin", "hairCol", "glasses", "fhc"].includes(k)) tpThumbs();
+  }
+  tpRefresh();
 }
 function tpConfirm() {
   if (!(TP.first.trim() && TP.last.trim())) { const i = $("tpFirst") || null; if (!i) { TPUI.tab = "id"; renderTP(); } (TP.first.trim() ? $("tpLast") : $("tpFirst"))?.focus(); return; }
