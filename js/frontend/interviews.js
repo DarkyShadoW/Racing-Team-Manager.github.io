@@ -57,7 +57,7 @@ function ivPick(kind, c) {
 // ---- the pictures: a pixel-art set behind (low resolution, scaled up), the Team Principal in front, then props in front of him
 // ---- the pictures: the user's sets (the reporter is part of them), the Team Principal standing where the microphone points.
 // Positions in the picture (0..1): head centre x, head top y, head height (top to chin) as a share of the picture's height.
-const IV_SET = { press: { src: "assets/iv/studio.jpg", tp: [.775, .145, .235], fx: .54 }, grid: { src: "assets/iv/pit.jpg", tp: [.77, .1, .2], fx: .55 } };
+const IV_SET = { press: { src: "assets/press/studio.jpg", tp: [.775, .145, .235], fx: .54 }, grid: { src: "assets/press/pit.jpg", tp: [.77, .1, .2], fx: .55 } };
 IV_SET.post = IV_SET.grid;
 function ivEl() {
   if (IV.el) return IV.el;
