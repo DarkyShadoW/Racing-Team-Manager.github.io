@@ -1,4 +1,4 @@
-const APP_VERSION = "1.0.1";
+const APP_VERSION = "1.0.2";
 var IV_ON = true;                                            // interviews: at the start of the GP, before and after the race
 var WK = null, SES = null, FL = null, S = null, GAME = { mode: "gp" };
 const OPT = Object.assign({ lang: "es", radio: "all", replays: true, fans: true, quality: "hi" }, (() => { try { return JSON.parse(localStorage.getItem("f1tm.opt") || "{}"); } catch (e) { return {}; } })());
@@ -116,8 +116,8 @@ Object.entries({ mcl: ["McLaron", "Merzedes"], mer: ["AMB Petranas", "Merzedes"]
 // team logos (logo_<team>.png): white marks, except the ones that only read in colour
 const LOGO = {}, LOGO_COLOR = { rbr: 1, fer: 1, haa: 1 };
 Object.keys(TEAMS).forEach(t => { const im = new Image(); im.onload = () => { if (typeof GARV !== "undefined") { delete GARV.base[t]; drawGarage(true); } }; im.src = `assets/img/logo_${t}.png`; LOGO[t] = im; });
-const teamLogoSel = (t, cls = "tlg") => TEAMS[t] ? `<img class="${cls}" src="tlogo_${t}.png" alt="${TEAMS[t].name}" draggable="false">` : "";   // team selection screen
-const teamLogo = (t, cls = "tlg") => TEAMS[t] ? `<img class="${cls}" src="logo_${t}.png" alt="${TEAMS[t].name}" draggable="false">` : "";
+const teamLogoSel = (t, cls = "tlg") => TEAMS[t] ? `<img class="${cls}" src="assets/img/tlogo_${t}.png" alt="${TEAMS[t].name}" draggable="false">` : "";   // team selection screen
+const teamLogo = (t, cls = "tlg") => TEAMS[t] ? `<img class="${cls}" src="assets/img/logo_${t}.png" alt="${TEAMS[t].name}" draggable="false">` : "";
 const NAT = { GAS: "FR", COL: "AR", ALO: "ES", TSU: "JP", HUL: "DE", BOR: "BR", PER: "MX", BOT: "FI", LEC: "MC", HAM: "GB", OCO: "FR", BEA: "GB", NOR: "GB", PIA: "AU",
   RUS: "GB", ANT: "IT", LAW: "NZ", LIN: "GB", VER: "NL", HAD: "FR", SAI: "ES", ALB: "TH", STR: "CA", MAG: "DK", WEH: "DE", ZHO: "CN", KVY: "RU", GIO: "IT" };
 const PORTRAIT = ["GAS", "COL", "ALO", "STR", "HUL", "BOR", "PER", "BOT", "LEC", "HAM", "OCO", "BEA", "NOR", "PIA", "RUS", "ANT", "LAW", "LIN", "VER", "HAD", "SAI", "ALB",
