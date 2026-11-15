@@ -435,9 +435,14 @@ function tpSet(k, v) {
       const attr = b.getAttribute("role") === "radio" ? "aria-checked" : "aria-pressed";
       b.setAttribute(attr, String(b.dataset.v === String(TP[k])));
     });
-    if (["skin", "hairCol", "glasses", "fhc"].includes(k)) tpThumbs();
   }
-  tpRefresh();
+  const needThumbs = !rebuild && ["skin", "hairCol", "glasses", "fhc"].includes(k);
+  TPUI.needThumbs = TPUI.needThumbs || needThumbs;
+  cancelAnimationFrame(TPUI.raf);
+  TPUI.raf = requestAnimationFrame(() => {
+    tpRefresh();
+    if (TPUI.needThumbs) { TPUI.needThumbs = false; tpThumbs(); }
+  });
 }
 function tpConfirm() {
   if (!(TP.first.trim() && TP.last.trim())) { const i = $("tpFirst") || null; if (!i) { TPUI.tab = "id"; renderTP(); } (TP.first.trim() ? $("tpLast") : $("tpFirst"))?.focus(); return; }
