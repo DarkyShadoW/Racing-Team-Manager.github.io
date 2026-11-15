@@ -1,4 +1,5 @@
 var IV_ON = true;                                            // interviews: at the start of the GP, before and after the race
+var WK = null, SES = null, FL = null, S = null, GAME = { mode: "gp" };
 const OPT = Object.assign({ lang: "es", radio: "all", replays: true, fans: true, quality: "hi" }, (() => { try { return JSON.parse(localStorage.getItem("f1tm.opt") || "{}"); } catch (e) { return {}; } })());
 function saveOpt() { try { localStorage.setItem("f1tm.opt", JSON.stringify(OPT)); } catch (e) { } }
 const MAP_W = 2752, MAP_H = 1536, M_PER_PX = RL.mPerPx;
