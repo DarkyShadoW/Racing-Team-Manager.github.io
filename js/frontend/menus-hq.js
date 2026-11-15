@@ -68,7 +68,7 @@ function renderFront() {
         <span class="ft-sub">You don't drive. You decide.</span></div>
       <div class="ft-press">${matchMedia("(hover:none)").matches ? L("Toca para continuar", "Tap to continue") : L("Pulsa cualquier botón", "Press any button")}</div>
       <div class="ft-note">${L("Juego no oficial hecho por fans · sin afiliación con la Formula 1 ni con los equipos", "Unofficial fan-made game · not affiliated with Formula 1 or the teams")}</div>
-      <div class="ft-foot"><span>v1.0</span><span>${OPT.lang === "en" ? "EN" : "ES"}</span></div>`;
+      <div class="ft-foot"><span>v${APP_VERSION}</span><span>${OPT.lang === "en" ? "EN" : "ES"}</span></div>`;
   } else if (v === "main") {
     const gear = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg>';
     $("fxMain").innerHTML = `<div class="fx-bg"></div><div class="fx-dots"></div>
