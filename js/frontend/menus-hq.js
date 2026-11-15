@@ -117,7 +117,7 @@ function renderFront() {
   } else if (v === "hq") renderHQ();
   else if (v === "intro") renderIntro();
   else if (v === "tp") renderTP();
-  if (v === "team") gate(imgsReady(["assets/img/drivers.jpg", "assets/img/cars.png", ...TEAM_ORDER.map(t => `assets/img/tlogo_${t}.png`)]), () => { });
+  if (v === "team") gate(imgsReady(["assets/img/drivers.jpg", "assets/img/cars.png", ...TEAM_ORDER.map(t => `assets/logos/tlogo_${t}.png`)]), () => { });
 }
 function teamDetail() {
   const t = FRONT.team, T = TEAMS[t], I = teamInfo(t);
